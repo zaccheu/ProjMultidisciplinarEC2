@@ -11,7 +11,7 @@ namespace Trabalho_Electra_fisica
         /// <summary>
         /// Ponto de entrada principal para o aplicativo.
         /// </summary>
-        [STAThread]
+        [STAThread] /*teste*/
         static void Main()
         {
             Application.EnableVisualStyles();
