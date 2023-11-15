@@ -14,11 +14,12 @@ namespace AnaliseCircuito
             Console.Write("----------------------------------------ANÁLISE-DE-CIRCUITOS----------------------------------------\n");
             Console.Write("Quantas malhas têm o circuito? \n");
             int nMalha = int.Parse(Console.ReadLine());
-            float[,] matrizConta = new float[nMalha, nMalha];
-            float[] somaResistor = new float[nMalha];
-            float[] somaResistorCompartilhadoPro = new float[nMalha]; //soma o valor de todos os resistores compartilhados para usar na matriz
-            float[] somaResistorCompartilhadoAnt = new float[nMalha];
-            float[] somaFonte = new float[nMalha];
+            float[,] matrizConta = new float[nMalha, nMalha]; //
+            float[] somaResistor = new float[nMalha]; //soma o valor de todos os resistores na malha
+            float[] somaResistorCompartilhadoPro = new float[nMalha]; //soma o valor de todos os resistores compartilhados com a próxima malha
+            float[] somaResistorCompartilhadoAnt = new float[nMalha]; //soma o valor de todos os resistores compartilhados com a malha anterior
+            float[] somaFonte = new float[nMalha];  //soma o valor de todas as fontes na malha
+            //todos esses vetores acima, armazenam o valor específico de cada malha (somaResistor[0] e somaFonte[0], por exemplo, armazenam os dados apenas da malha 1)
             for (int i = 0; i < nMalha; i++) //percorre malha por malha
             {
                 string resp1, resp2;
