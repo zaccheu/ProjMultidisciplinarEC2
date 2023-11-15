@@ -14,12 +14,13 @@ namespace AnaliseCircuito
             Console.Write("----------------------------------------ANÁLISE-DE-CIRCUITOS----------------------------------------\n");
             Console.Write("Quantas malhas têm o circuito? \n");
             int nMalha = int.Parse(Console.ReadLine());
-            float[,] matrizConta = new float[nMalha, nMalha]; //
+            float[,] matrizConta = new float[nMalha, nMalha]; //matriz diretamente responsável pela conta das correntes. (matrizConta[i] * matrizCorrente[i] = matrizResultado(=somaFonte))
             float[] somaResistor = new float[nMalha]; //soma o valor de todos os resistores na malha
             float[] somaResistorCompartilhadoPro = new float[nMalha]; //soma o valor de todos os resistores compartilhados com a próxima malha
             float[] somaResistorCompartilhadoAnt = new float[nMalha]; //soma o valor de todos os resistores compartilhados com a malha anterior
             float[] somaFonte = new float[nMalha];  //soma o valor de todas as fontes na malha
             //todos esses vetores acima, armazenam o valor específico de cada malha (somaResistor[0] e somaFonte[0], por exemplo, armazenam os dados apenas da malha 1)
+
             for (int i = 0; i < nMalha; i++) //percorre malha por malha
             {
                 string resp1, resp2;
@@ -64,8 +65,8 @@ namespace AnaliseCircuito
                 }
 
                 Console.Write("\nA malha " + (i + 1) + " possui algum resistor (s/n)? ");
-                resp2 = Console.ReadLine().ToLower();
-                somaResistor[i] = 0; somaResistorCompartilhadoPro[i] = 0; somaResistorCompartilhadoAnt[i] = 0;
+                resp2 = Console.ReadLine().ToLower(); //To.Lower = pode ser usado letras maiúsculas e minúsculas
+                somaResistor[i] = 0; somaResistorCompartilhadoPro[i] = 0; somaResistorCompartilhadoAnt[i] = 0; //vetores com valor inicial 0, para poder efetuar a soma pedida
                 if (resp2 == "s")
                 {
                     Console.Write("   Há quantos resistores nessa malha? ");
@@ -135,37 +136,64 @@ namespace AnaliseCircuito
                 Console.WriteLine("Soma dos resistores compartilhados(negativo) com a malha anterior: " + somaResistorCompartilhadoAnt[i]);
                 Console.WriteLine("---------------------------------------------------------------------------------------\n");
 
-                int a = 0;
+                int a = 0; //índice a precisa ser declarado fora do for, para não interferir dentro dele
                 for (int m = 0; m < nMalha; m++) //for para preencher a matrizConta
                 {
                     for (int n = 0; n < nMalha; n++)
                     {
-                        if (m == n)
+                        if (m == n) //se o índice m for igual ao índice n, ou seja, preenche a diagonal principal (0,0 (somaResistor[0]); 1,1 (somaResistor[1]); 2,2 (somaResistor[2])...)
                         {
                             matrizConta[m, n] = somaResistor[a];
                         }
-                        else if (m > (n + 1) || n > (m + 1))
+                        else if (m > (n + 1) || n > (m + 1)) //índices com uma diferença de 2 números ou mais, são preenchidos com 0 (2,0; 3,0; 1,3; 0,2...)
                         {
                             matrizConta[m, n] = 0;
                         }
                         else
                         {
-                            if (m > n)
+                            if (m > n) //(1,0; 2,1; 3,2...)
                             {
-                                matrizConta[m, n] = somaResistorCompartilhadoAnt[a];
+                                matrizConta[m, n] = somaResistorCompartilhadoAnt[a]; //apenas a soma de resistores compartilhados com a malha anterior
                             }
-                            else
+                            else //(0,1; 1,2; 2,3...)
                             {
-                                matrizConta[m, n] = somaResistorCompartilhadoPro[a];
+                                matrizConta[m, n] = somaResistorCompartilhadoPro[a]; //apenas a soma de resistores compartilhados com a próxima malha
                             }
 
                         }
                     }
-                    a++;
+                    a++; //entre os dois for, para que ele some 1 no índice somente quando trocar de linha
                 }
 
             }
 
+            int[] nCorrente = new int[(nMalha * 2) - 1]; //ERRADO. Precisa ser string para serem chamadas de "I1, I2, I3...". Portanto da erro na conta
+            float[,] matrizCorrente = new float[nMalha, 1];
+            float[,] matrizResultado = new float[nMalha, 1];
+
+            for (int i = 0; i < nMalha; i++) //preenchendo as correntes
+            {
+                nCorrente[i] = nCorrente[i];
+            }
+            for (int i = 0; i < nMalha; i++) //criação da matrizCorrente
+            {
+                matrizCorrente[i, 0] = nCorrente[i];
+            }
+            for (int i = 0; i < nMalha; i++) //criação da matrizResultado
+            {
+                matrizResultado[i, 0] = somaFonte[i];
+            }
+
+            for (int i = 0; i < nMalha; i++) //encontrando os números da matrizCorrente
+            {
+                for (int j = 0; j < nMalha; j++)
+                {
+                    matrizResultado[i, 0] = matrizConta[i, j] * matrizCorrente[i, 0];
+                }
+            }
+
+
+            //----------------------------------------------------------------------
             //Necessário para percorrer os vetores e a matriz para mostrar os dados.
             Console.WriteLine("\nSoma resistores: ");
             for (int i = 0; i < nMalha; i++)
@@ -191,8 +219,9 @@ namespace AnaliseCircuito
                     Console.Write(matrizConta[m, n] + "   ");
                 }
                 Console.Write("\n");
-            }
-            Console.ReadKey(); //
+            } //
+
+            Console.ReadKey();
 
         }
     }
