@@ -26,5 +26,10 @@ namespace Trabalho_Electra_fisica
         {
             
         }
+
+        private void btnfis_Click(object sender, EventArgs e)
+        {
+            new Balistica().Show();
+        }
     }
 }

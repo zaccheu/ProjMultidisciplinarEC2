@@ -36,7 +36,7 @@
             // 
             // lblTitulo
             // 
-            this.lblTitulo.Font = new System.Drawing.Font("Old English Text MT", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.Location = new System.Drawing.Point(12, 9);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(776, 91);
@@ -54,6 +54,7 @@
             this.btnfis.TabIndex = 1;
             this.btnfis.Text = "Balística";
             this.btnfis.UseVisualStyleBackColor = true;
+            this.btnfis.Click += new System.EventHandler(this.btnfis_Click);
             // 
             // btnelet
             // 
@@ -68,7 +69,7 @@
             // 
             // lblModo
             // 
-            this.lblModo.Font = new System.Drawing.Font("Showcard Gothic", 27.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModo.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblModo.ForeColor = System.Drawing.Color.DarkRed;
             this.lblModo.Location = new System.Drawing.Point(12, 100);
             this.lblModo.Name = "lblModo";

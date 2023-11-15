@@ -1,0 +1,12 @@
+D:\Repositório Git\Trabalho_Electra-fisica\Trabalho_Electra-fisica\bin\Debug\Trabalho_Electra-fisica.exe.config
+D:\Repositório Git\Trabalho_Electra-fisica\Trabalho_Electra-fisica\bin\Debug\Trabalho_Electra-fisica.exe
+D:\Repositório Git\Trabalho_Electra-fisica\Trabalho_Electra-fisica\bin\Debug\Trabalho_Electra-fisica.pdb
+D:\Repositório Git\Trabalho_Electra-fisica\Trabalho_Electra-fisica\obj\Debug\Trabalho_Electra-fisica.csproj.AssemblyReference.cache
+D:\Repositório Git\Trabalho_Electra-fisica\Trabalho_Electra-fisica\obj\Debug\Trabalho_Electra-fisica.csproj.SuggestedBindingRedirects.cache
+D:\Repositório Git\Trabalho_Electra-fisica\Trabalho_Electra-fisica\obj\Debug\Trabalho_Electra_fisica.Properties.Resources.resources
+D:\Repositório Git\Trabalho_Electra-fisica\Trabalho_Electra-fisica\obj\Debug\Trabalho_Electra-fisica.csproj.GenerateResource.cache
+D:\Repositório Git\Trabalho_Electra-fisica\Trabalho_Electra-fisica\obj\Debug\Trabalho_Electra-fisica.csproj.CoreCompileInputs.cache
+D:\Repositório Git\Trabalho_Electra-fisica\Trabalho_Electra-fisica\obj\Debug\Trabalho_Electra-fisica.exe
+D:\Repositório Git\Trabalho_Electra-fisica\Trabalho_Electra-fisica\obj\Debug\Trabalho_Electra-fisica.pdb
+D:\Repositório Git\Trabalho_Electra-fisica\Trabalho_Electra-fisica\obj\Debug\Trabalho_Electra_fisica.Form1.resources
+D:\Repositório Git\Trabalho_Electra-fisica\Trabalho_Electra-fisica\obj\Debug\Trabalho_Electra_fisica.Balistica.resources
