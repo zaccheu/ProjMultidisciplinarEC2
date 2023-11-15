@@ -45,6 +45,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.lblError = new System.Windows.Forms.Label();
+            this.txtRelatorio = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -58,17 +59,17 @@
             this.textBoxX.TabIndex = 0;
             this.textBoxX.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // textBox2
+            // textBoxY
             // 
             this.textBoxY.Location = new System.Drawing.Point(147, 58);
-            this.textBoxY.Name = "textBox2";
+            this.textBoxY.Name = "textBoxY";
             this.textBoxY.Size = new System.Drawing.Size(48, 20);
             this.textBoxY.TabIndex = 1;
             // 
-            // textBox3
+            // textBoxTheta
             // 
             this.textBoxTheta.Location = new System.Drawing.Point(47, 145);
-            this.textBoxTheta.Name = "textBox3";
+            this.textBoxTheta.Name = "textBoxTheta";
             this.textBoxTheta.Size = new System.Drawing.Size(44, 20);
             this.textBoxTheta.TabIndex = 2;
             // 
@@ -140,14 +141,19 @@
             this.chart1.Location = new System.Drawing.Point(228, 12);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            this.chart1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chart1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.IsValueShownAsLabel = true;
             series1.Legend = "Legend1";
-            series1.Name = "Series1";
+            series1.MarkerColor = System.Drawing.Color.Black;
+            series1.MarkerSize = 8;
+            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series1.Name = "Equação da Trajetória";
+            series1.YValuesPerPoint = 2;
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(1054, 511);
+            this.chart1.Size = new System.Drawing.Size(1054, 575);
             this.chart1.TabIndex = 10;
-            this.chart1.Text = "chart1";
             this.chart1.Visible = false;
             this.chart1.Click += new System.EventHandler(this.chart1_Click);
             // 
@@ -172,9 +178,9 @@
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(228, 544);
+            this.dataGridView2.Location = new System.Drawing.Point(228, 593);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(1054, 218);
+            this.dataGridView2.Size = new System.Drawing.Size(1054, 169);
             this.dataGridView2.TabIndex = 13;
             // 
             // lblError
@@ -189,11 +195,23 @@
             this.lblError.Visible = false;
             this.lblError.Click += new System.EventHandler(this.lblError_Click);
             // 
+            // txtRelatorio
+            // 
+            this.txtRelatorio.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRelatorio.Location = new System.Drawing.Point(228, 593);
+            this.txtRelatorio.Multiline = true;
+            this.txtRelatorio.Name = "txtRelatorio";
+            this.txtRelatorio.ReadOnly = true;
+            this.txtRelatorio.Size = new System.Drawing.Size(1054, 169);
+            this.txtRelatorio.TabIndex = 15;
+            this.txtRelatorio.Visible = false;
+            // 
             // Balistica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1294, 788);
+            this.Controls.Add(this.txtRelatorio);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.btngrafico);
@@ -235,5 +253,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.TextBox txtRelatorio;
     }
 }
