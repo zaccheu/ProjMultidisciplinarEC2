@@ -21,5 +21,22 @@ namespace AnaliseCircuitoWF
         {
 
         }
+
+        private void btnCorfirmanMalha_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void nMalha_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
