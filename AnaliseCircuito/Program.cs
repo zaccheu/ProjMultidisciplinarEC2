@@ -219,7 +219,8 @@ namespace AnaliseCircuito
                     Console.Write(matrizConta[m, n] + "   ");
                 }
                 Console.Write("\n");
-            } //
+            } 
+            // Falta resolver o sistema e achar os I1, 2, etc
 
             Console.ReadKey();
 
