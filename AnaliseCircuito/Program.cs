@@ -225,65 +225,53 @@ namespace AnaliseCircuito
 
 
             /*TESTANDO O BAGULHO PRA ACHAR A EQUAÇÃO E RESOLVER*/
-
-
-
-
-
-            // Coeficientes da matriz
-            /*var coefficients = Matrix<double>.Build.DenseOfArray(new double[,]
-                    {
-                    {1, 2, 3},
-                    {4, 5, 6},
-                    {7, 8, 9}
-                    });
-
-                    // Vetor de variáveis
-                    var variables = Vector<double>.Build.Dense(new double[] { 1, 2, 3 });
-
-                    // Lado direito do sistema de equações
-                    var constants = Vector<double>.Build.Dense(new double[] { somaFonte[0], somaFonte[1], somaFonte[2] });
-
-                    // Resolver o sistema
-                    var solution = coefficients.Solve(constants);
-
-                    // Exibir a solução
-                    Console.WriteLine("Solução:");
-                    Console.WriteLine($"I1 = {solution[0]}");
-                    Console.WriteLine($"I2 = {solution[1]}");
-                    Console.WriteLine($"I3 = {solution[2]}");
-                }
-
-                */
-
-            /*CÓPIA PRA PREENCHER O MÉTODO A PARTIR DO SISTEMA QUE A GENTE MONTAR
-
-
-        static void Main()
-        {
-            // Coeficientes da matriz
-            var coefficients = Matrix<double>.Build.DenseOfArray(new double[,]
+            
+            // Coeficientes da matriz           
+            var coefficients = Matrix<double>.Build.DenseOfArray(new double[,] //matriz preenchida à mão
             {
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9}
+            {5, 0, 0},
+            {0, 10, -5},
+            {0, -5, 11}
             });
 
-            // Vetor de variáveis
-            var variables = Vector<double>.Build.Dense(new double[] { 1, 2, 3 });
-
-            // Lado direito do sistema de equações
-            var constants = Vector<double>.Build.Dense(new double[] { 10, 20, 30 });
+            // Coluna dos resultados
+            var results = Vector<double>.Build.Dense(new double[] { 70, -20, 30 }); //Parte da direita do sistema (resultados)
 
             // Resolver o sistema
-            var solution = coefficients.Solve(constants);
+            var solution = coefficients.Solve(results); // puxa o resultado .Solve
 
             // Exibir a solução
             Console.WriteLine("Solução:");
             Console.WriteLine($"I1 = {solution[0]}");
             Console.WriteLine($"I2 = {solution[1]}");
             Console.WriteLine($"I3 = {solution[2]}");
-        }*/
+
+            Console.ReadKey();
+            // O PROBLEMA VAI SER PREENCHER ESSAS MATRIZES DE FORMA AUTOMATIZADA
+
+
+            /*CÓPIA PRA PREENCHER O MÉTODO A PARTIR DO SISTEMA QUE A GENTE MONTAR
+
+        var coefficients = Matrix<double>.Build.DenseOfArray(new double[,]
+            {
+            {5, 0, 0},
+            {0, 10, -5},
+            {0, -5, 11}
+            });
+
+            // Coluna dos resultados
+            var results = Vector<double>.Build.Dense(new double[] { 70, -20, 30 });
+
+            // Resolver o sistema
+            var solution = coefficients.Solve(results);
+
+            // Exibir a solução
+            Console.WriteLine("Solução:");
+            Console.WriteLine($"I1 = {solution[0]}");
+            Console.WriteLine($"I2 = {solution[1]}");
+            Console.WriteLine($"I3 = {solution[2]}");
+
+            Console.ReadKey();*/
         }
     }
 }
