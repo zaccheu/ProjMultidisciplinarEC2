@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using MathNet.Numerics.LinearAlgebra;
 
 namespace AnaliseCircuito
 {
@@ -14,7 +15,7 @@ namespace AnaliseCircuito
             Console.Write("----------------------------------------ANÁLISE-DE-CIRCUITOS----------------------------------------\n");
             Console.Write("Quantas malhas têm o circuito? \n");
             int nMalha = int.Parse(Console.ReadLine());
-            float[,] matrizConta = new float[nMalha, nMalha]; //matriz diretamente responsável pela conta das correntes. (matrizConta[i] * matrizCorrente[i] = matrizResultado(=somaFonte))
+            float[,] matrizConta = new float[nMalha, nMalha]; //matriz diretamente responsável pela conta das correntes. (matrizConta[i] * matrizSistema[i] = matrizResultado(=somaFonte))
             float[] somaResistor = new float[nMalha]; //soma o valor de todos os resistores na malha
             float[] somaResistorCompartilhadoPro = new float[nMalha]; //soma o valor de todos os resistores compartilhados com a próxima malha
             float[] somaResistorCompartilhadoAnt = new float[nMalha]; //soma o valor de todos os resistores compartilhados com a malha anterior
@@ -167,28 +168,28 @@ namespace AnaliseCircuito
 
             }
 
-            int[] nCorrente = new int[(nMalha * 2) - 1]; //ERRADO. Precisa ser string para serem chamadas de "I1, I2, I3...". Portanto da erro na conta
-            float[,] matrizCorrente = new float[nMalha, 1];
+            int[] nCorrente = new int[(nMalha * 2) - 1];
+            float[,] matrizSistema = new float[nMalha, 1]; //ERRADO. Precisa ser string para serem chamadas de "I1, I2, I3...". Portanto da erro na conta
             float[,] matrizResultado = new float[nMalha, 1];
 
             for (int i = 0; i < nMalha; i++) //preenchendo as correntes
             {
                 nCorrente[i] = nCorrente[i];
             }
-            for (int i = 0; i < nMalha; i++) //criação da matrizCorrente
+            for (int i = 0; i < nMalha; i++) //criação da matrizSistema
             {
-                matrizCorrente[i, 0] = nCorrente[i];
+                matrizSistema[i, 0] = nCorrente[i];
             }
             for (int i = 0; i < nMalha; i++) //criação da matrizResultado
             {
                 matrizResultado[i, 0] = somaFonte[i];
             }
 
-            for (int i = 0; i < nMalha; i++) //encontrando os números da matrizCorrente
+            for (int i = 0; i < nMalha; i++) //encontrando os números da matrizSistema
             {
                 for (int j = 0; j < nMalha; j++)
                 {
-                    matrizResultado[i, 0] = matrizConta[i, j] * matrizCorrente[i, 0];
+                    matrizResultado[i, 0] = matrizConta[i, j] * matrizSistema[i, 0];
                 }
             }
 
@@ -219,11 +220,70 @@ namespace AnaliseCircuito
                     Console.Write(matrizConta[m, n] + "   ");
                 }
                 Console.Write("\n");
-            } 
-            // Falta resolver o sistema e achar os I1, 2, etc
-
+            }
             Console.ReadKey();
 
+
+            /*TESTANDO O BAGULHO PRA ACHAR A EQUAÇÃO E RESOLVER*/
+
+
+
+
+
+            // Coeficientes da matriz
+            /*var coefficients = Matrix<double>.Build.DenseOfArray(new double[,]
+                    {
+                    {1, 2, 3},
+                    {4, 5, 6},
+                    {7, 8, 9}
+                    });
+
+                    // Vetor de variáveis
+                    var variables = Vector<double>.Build.Dense(new double[] { 1, 2, 3 });
+
+                    // Lado direito do sistema de equações
+                    var constants = Vector<double>.Build.Dense(new double[] { somaFonte[0], somaFonte[1], somaFonte[2] });
+
+                    // Resolver o sistema
+                    var solution = coefficients.Solve(constants);
+
+                    // Exibir a solução
+                    Console.WriteLine("Solução:");
+                    Console.WriteLine($"I1 = {solution[0]}");
+                    Console.WriteLine($"I2 = {solution[1]}");
+                    Console.WriteLine($"I3 = {solution[2]}");
+                }
+
+                */
+
+            /*CÓPIA PRA PREENCHER O MÉTODO A PARTIR DO SISTEMA QUE A GENTE MONTAR
+
+
+        static void Main()
+        {
+            // Coeficientes da matriz
+            var coefficients = Matrix<double>.Build.DenseOfArray(new double[,]
+            {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+            });
+
+            // Vetor de variáveis
+            var variables = Vector<double>.Build.Dense(new double[] { 1, 2, 3 });
+
+            // Lado direito do sistema de equações
+            var constants = Vector<double>.Build.Dense(new double[] { 10, 20, 30 });
+
+            // Resolver o sistema
+            var solution = coefficients.Solve(constants);
+
+            // Exibir a solução
+            Console.WriteLine("Solução:");
+            Console.WriteLine($"I1 = {solution[0]}");
+            Console.WriteLine($"I2 = {solution[1]}");
+            Console.WriteLine($"I3 = {solution[2]}");
+        }*/
         }
     }
 }
