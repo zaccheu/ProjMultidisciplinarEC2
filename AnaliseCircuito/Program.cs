@@ -169,10 +169,9 @@ namespace AnaliseCircuito
             }
 
             int[] nCorrente = new int[(nMalha * 2) - 1];
-            float[,] matrizSistema = new float[nMalha, 1]; //ERRADO. Precisa ser string para serem chamadas de "I1, I2, I3...". Portanto da erro na conta
             float[,] matrizResultado = new float[nMalha, 1];
 
-            for (int i = 0; i < nMalha; i++) //preenchendo as correntes
+            /*for (int i = 0; i < nMalha; i++) //preenchendo as correntes
             {
                 nCorrente[i] = nCorrente[i];
             }
@@ -191,8 +190,7 @@ namespace AnaliseCircuito
                 {
                     matrizResultado[i, 0] = matrizConta[i, j] * matrizSistema[i, 0];
                 }
-            }
-
+            }*/
 
             //----------------------------------------------------------------------
             //Necessário para percorrer os vetores e a matriz para mostrar os dados.
@@ -225,18 +223,25 @@ namespace AnaliseCircuito
 
 
             /*TESTANDO O BAGULHO PRA ACHAR A EQUAÇÃO E RESOLVER*/
-            
+
             // Coeficientes da matriz           
-            var coefficients = Matrix<double>.Build.DenseOfArray(new double[,] //matriz preenchida à mão
+            Matrix<double> coefficients = Matrix<double>.Build.Dense (nMalha, nMalha); //matriz preenchida à mão
+            for (int h = 0; h < nMalha; h++)
             {
-            {5, 0, 0},
-            {0, 10, -5},
-            {0, -5, 11}
-            });
+                for (int z = 0; z <nMalha; z++)
+                {
+                    coefficients[h, z] = matrizConta[h, z];
+                }
+            }       
+            // Coluna das fontes
+            
+            Vector<double> results = Vector<double>.Build.Dense(nMalha); //Parte da direita do sistema (resultados)
 
-            // Coluna dos resultados
-            var results = Vector<double>.Build.Dense(new double[] { 70, -20, 30 }); //Parte da direita do sistema (resultados)
-
+            for (int g = 0; g < nMalha; g++)
+            {
+                // Atribuir o valor à posição correspondente no vetor
+                results[g] = somaFonte[g];
+            }
             // Resolver o sistema
             var solution = coefficients.Solve(results); // puxa o resultado .Solve
 
@@ -246,36 +251,7 @@ namespace AnaliseCircuito
             Console.WriteLine($"I2 = {solution[1]}");
             Console.WriteLine($"I3 = {solution[2]}");
 
-            Console.ReadKey();
-            // O PROBLEMA VAI SER PREENCHER ESSAS MATRIZES DE FORMA AUTOMATIZADA
-
-
-            /*CÓPIA PRA PREENCHER O MÉTODO A PARTIR DO SISTEMA QUE A GENTE MONTAR
-
-        var coefficients = Matrix<double>.Build.DenseOfArray(new double[,]
-            {
-            {5, 0, 0},
-            {0, 10, -5},
-            {0, -5, 11}
-            });
-
-            // Coluna dos resultados
-            var results = Vector<double>.Build.Dense(new double[] { 70, -20, 30 });
-
-            // Resolver o sistema
-            var solution = coefficients.Solve(results);
-
-            // Exibir a solução
-            Console.WriteLine("Solução:");
-            Console.WriteLine($"I1 = {solution[0]}");
-            Console.WriteLine($"I2 = {solution[1]}");
-            Console.WriteLine($"I3 = {solution[2]}");
-
-            Console.ReadKey();*/
+            Console.ReadKey();                              
         }
     }
 }
-
-/*0,0(somaResistor[i]);                      0,1(somaResistorCompartilhadoPro[i]);   0,2(0)
-  1,0(somaResistorCompartilhadoAnt[i]);      1,1(somaResistor[i]);                   1,2(somaResistorCompartilhadoPro[i])
-  2,0(0);                                    2,1(somaResistorCompartilhadoAnt[i]);   2,2(somaResistor[i])*/

@@ -1,8 +1,14 @@
 {
   "ExpandedNodes": [
+<<<<<<< HEAD
     "",
     "\\AnaliseCircuito"
   ],
   "SelectedNode": "\\AnaliseCircuito\\AnaliseCircuito.sln",
+=======
+    ""
+  ],
+  "SelectedNode": "\\AnaliseCircuito.sln",
+>>>>>>> f5fe06cc4f404ed3f54a6063dd92a45c4612f9e1
   "PreviewInSolutionExplorer": false
 }
