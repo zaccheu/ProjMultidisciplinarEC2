@@ -1,7 +1,14 @@
 {
   "ExpandedNodes": [
+<<<<<<< HEAD
     ""
   ],
   "SelectedNode": "\\AnaliseCircuito.sln",
+=======
+    "",
+    "\\AnaliseCircuitoWF"
+  ],
+  "SelectedNode": "\\AnaliseCircuitoWF\\Form1.cs",
+>>>>>>> 2ab4196c5ee759aac2fa21e3d422f25a39c3a2f2
   "PreviewInSolutionExplorer": false
 }
