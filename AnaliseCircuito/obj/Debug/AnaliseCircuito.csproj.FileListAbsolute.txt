@@ -26,3 +26,8 @@ C:\Users\José\Documents\DEV\ProjetoLeide\ProjetoLeide\Trabalho_Electra-fisica\P
 C:\Users\José\Documents\DEV\ProjetoLeide\ProjetoLeide\Trabalho_Electra-fisica\ProjetoLeide\ProjetoLeide\ProjetoLeide\AnaliseCircuito\obj\Debug\AnaliseCircuito.csproj.CopyComplete
 C:\Users\José\Documents\DEV\ProjetoLeide\ProjetoLeide\Trabalho_Electra-fisica\ProjetoLeide\ProjetoLeide\ProjetoLeide\AnaliseCircuito\obj\Debug\AnaliseCircuito.exe
 C:\Users\José\Documents\DEV\ProjetoLeide\ProjetoLeide\Trabalho_Electra-fisica\ProjetoLeide\ProjetoLeide\ProjetoLeide\AnaliseCircuito\obj\Debug\AnaliseCircuito.pdb
+C:\Users\Vitor\Git\Trabalho_Algoritmo\ProjetoLeide\AnaliseCircuito\bin\Debug\MathNet.Numerics.dll
+C:\Users\Vitor\Git\Trabalho_Algoritmo\ProjetoLeide\AnaliseCircuito\bin\Debug\System.ValueTuple.dll
+C:\Users\Vitor\Git\Trabalho_Algoritmo\ProjetoLeide\AnaliseCircuito\bin\Debug\MathNet.Numerics.xml
+C:\Users\Vitor\Git\Trabalho_Algoritmo\ProjetoLeide\AnaliseCircuito\bin\Debug\System.ValueTuple.xml
+C:\Users\Vitor\Git\Trabalho_Algoritmo\ProjetoLeide\AnaliseCircuito\obj\Debug\AnaliseCircuito.csproj.CopyComplete
