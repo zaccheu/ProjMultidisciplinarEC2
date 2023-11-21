@@ -56,7 +56,7 @@ namespace AnaliseCircuito
                             }
                             else
                             {
-                                Console.Write("   Erro! Digite novamente: ");
+                                Console.Write(" Erro! Digite novamente: ");
                                 resp = false;
                             }
                         } while (!resp);
@@ -80,7 +80,6 @@ namespace AnaliseCircuito
 
                         valorResistor[k] = float.Parse(Console.ReadLine());
                         somaResistor[i] += valorResistor[k]; //armazena a soma dos valores de todos os resistores da matriz em questão
-
                     }
                     if (i == 0) //primeira malha
                     {
