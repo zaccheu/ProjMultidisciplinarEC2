@@ -169,30 +169,7 @@ namespace AnaliseCircuito
             }
 
             int[] nCorrente = new int[(nMalha * 2) - 1];
-            float[,] matrizResultado = new float[nMalha, 1];
 
-            /*for (int i = 0; i < nMalha; i++) //preenchendo as correntes
-            {
-                nCorrente[i] = nCorrente[i];
-            }
-            for (int i = 0; i < nMalha; i++) //criação da matrizSistema
-            {
-                matrizSistema[i, 0] = nCorrente[i];
-            }
-            for (int i = 0; i < nMalha; i++) //criação da matrizResultado
-            {
-                matrizResultado[i, 0] = somaFonte[i];
-            }
-
-            for (int i = 0; i < nMalha; i++) //encontrando os números da matrizSistema
-            {
-                for (int j = 0; j < nMalha; j++)
-                {
-                    matrizResultado[i, 0] = matrizConta[i, j] * matrizSistema[i, 0];
-                }
-            }*/
-
-            //----------------------------------------------------------------------
             //Necessário para percorrer os vetores e a matriz para mostrar os dados.
             Console.WriteLine("\nSoma resistores: ");
             for (int i = 0; i < nMalha; i++)
@@ -221,9 +198,6 @@ namespace AnaliseCircuito
             }
             Console.ReadKey();
 
-
-            /*TESTANDO O BAGULHO PRA ACHAR A EQUAÇÃO E RESOLVER*/
-
             // Coeficientes da matriz           
             Matrix<double> coefficients = Matrix<double>.Build.Dense (nMalha, nMalha); //matriz preenchida à mão
             for (int h = 0; h < nMalha; h++)
@@ -233,9 +207,9 @@ namespace AnaliseCircuito
                     coefficients[h, z] = matrizConta[h, z];
                 }
             }       
-            // Coluna das fontes
             
-            Vector<double> results = Vector<double>.Build.Dense(nMalha); //Parte da direita do sistema (resultados)
+            // Coluna das fontes
+            Vector<double> results = Vector<double>.Build.Dense(nMalha); //Coluna da direita do sistema (resultados)
 
             for (int g = 0; g < nMalha; g++)
             {
@@ -245,12 +219,29 @@ namespace AnaliseCircuito
             // Resolver o sistema
             var solution = coefficients.Solve(results); // puxa o resultado .Solve
 
-            // Exibir a solução
+            // Exibir a solução.
             Console.WriteLine("Solução:");
-            Console.WriteLine($"I1 = {solution[0]}");
-            Console.WriteLine($"I2 = {solution[1]}");
-            Console.WriteLine($"I3 = {solution[2]}");
+            for (int i = 0; i <  nMalha; i++)
+            {
+                Console.WriteLine($"I{i+1}: {solution[i]}");
+            }
 
+            double [] solution2 = new double [(nMalha*2-1)-nMalha];
+            int x = 0;
+
+            for (int i = 0; i < solution2.Length ; i++) 
+            {   
+                if (solution[x] > solution[x+1])
+                {
+                    solution2[i] = solution[x] - solution[x+1];
+                }
+                else
+                {
+                    solution2[i] = solution[x+1] - solution[x];
+                }
+                x++;
+                Console.WriteLine(solution2[i]);
+            }          
             Console.ReadKey();                              
         }
     }
