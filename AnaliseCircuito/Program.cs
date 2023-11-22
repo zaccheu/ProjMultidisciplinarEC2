@@ -15,15 +15,23 @@ namespace AnaliseCircuito
             bool respPrincipal = true;
             try
             {
+                Console.WriteLine("----------------------------------------ANÁLISE-DE-CIRCUITOS----------------------------------------\n");
+                Console.WriteLine("   Análise de circuito é o processo de encontrar todas as correntes e tensões em uma rede de componentes conectados. \n   Para um melhor entendimento por parte do usuário, nós definimos alguns termos importantes: ");
+                Console.WriteLine("        - Nesse programa, leve em consideração que as correntes estão sempre no sentido HORÁRIO.");
+                Console.WriteLine("        - Resistor particular: resistor que se encontra em um fio exclusivo de uma malha.");
+                Console.WriteLine("        - Resistor compartilhado: resistor que se encontra no fio entre duas malhas.");
+                Console.WriteLine("        - Cada corrente pertence à sua respectiva malha (I1 - malha 1; I2 - malha 2...).");
+                Console.WriteLine("        - Já as correntes excedentes (por exemplo: I3 em um circuito de 2 malhas) pertencem às conexões das malhas e sua leitura deve ser feita da esquerda para direita.");
+                Console.WriteLine("             - Veja o exemplo de um circuito com 3 malhas abaixo: ");
+                Console.WriteLine("             _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _           ");
+                Console.WriteLine("            |                 | I4              | I5              |          ");
+                Console.WriteLine("            |                 |                 |                 |          ");
+                Console.WriteLine("  FONTE ->  .       I1        |       I2        |        I3       |          ");
+                Console.WriteLine("            -                 |                 |                 |          ");
+                Console.WriteLine("            |                 |                 |                 |          ");
+                Console.WriteLine("            |_ _ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _|          ");
                 do
                 {
-                    Console.WriteLine("----------------------------------------ANÁLISE-DE-CIRCUITOS----------------------------------------\n");
-                    Console.WriteLine("   Análise de circuito é o processo de encontrar todas as correntes e tensões em uma rede de componentes conectados. \n   Para um melhor entendimento por parte do usuário, nós definimos alguns termos importantes: ");
-                    Console.WriteLine("        - Nesse programa, leve em consideração que as correntes estão sempre no sentido HORÁRIO.");
-                    Console.WriteLine("        - Resistor particular: resistor que se encontra em um fio exclusivo de uma malha.");
-                    Console.WriteLine("        - Resistor compartilhado: resistor que se encontra no fio entre duas malhas.");
-                    Console.WriteLine("        - Cada corrente pertence à sua respectiva malha (I1 - malha 1; I2 - malha 2...).");
-                    Console.WriteLine("        - Já as correntes excedentes (por exemplo: I3 em um circuito de 2 malhas) pertencem às conexões das malhas e sua leitura deve ser feita da esquerda para direita.");
                     Console.WriteLine("\n----------------------------------------------------------------------------------------------------\n");
                     Console.Write("   Digite a quantidade de malhas do circuito: ");
                     int nMalha = int.Parse(Console.ReadLine());
@@ -39,128 +47,138 @@ namespace AnaliseCircuito
 
                     for (int i = 0; i < nMalha; i++) //percorre malha por malha
                     {
+                        //FONTES
                         string resp1, resp2;
                         Console.WriteLine("\n");
                         Console.WriteLine("\n-----------------------------------------------MALHA-" + (i + 1) + "----------------------------------------------");
-                        Console.Write("\nA malha " + (i + 1) + " possui alguma fonte (s/n)? ");
-                        resp1 = Console.ReadLine().ToLower(); //lê a resposta do usuário, para saber se a malha possui alguma fonte ou não
-
-                        if (resp1 == "s") //se a resposta for "s" (sim), o programa continua dentro do if. Caso contrário o programa passa para a próxima etapa
+                        do
                         {
-                            Console.Write("   Há quantas fontes nessa malha? ");
-                            int nFonte = int.Parse(Console.ReadLine());
-                            float[] valorFonte = new float[nFonte]; //vetor necessário para a soma das fontes pertencentes a matriz
-                            somaFonte[i] = 0;
-                            for (int j = 0; j < nFonte; j++) //percorre os valores das fontes
-                            {
-                                Console.Write("      - Informe o valor da " + (j + 1) + "° fonte (v): ");
-                                valorFonte[j] = float.Parse(Console.ReadLine());
-                                Console.WriteLine("   Qual o sentido dessa fonte?");
-                                Console.Write("      Se estiver no mesmo sentido da corrente (horário), digite (1), caso contrário (anti-horário) digite (2): ");
-                                bool resp = true; //necessário para que o usuário informe a posição corretamente 
-                                int posicao; //posição da fonte (importante no cáluclo)
-                                do
-                                {
-                                    resp = true;
-                                    posicao = int.Parse(Console.ReadLine());
-                                    if (posicao == 1)
-                                    {
-                                        valorFonte[j] = valorFonte[j];
-                                    }
-                                    else if (posicao == 2)
-                                    {
-                                        valorFonte[j] = (-valorFonte[j]); //muda o valor da fonte para negativo, caso essa esteja em sentido contrário à corrente
-                                    }
-                                    else
-                                    {
-                                        Console.Write(" Erro! Digite novamente: ");
-                                        resp = false;
-                                    }
-                                } while (!resp);
-                                somaFonte[i] += valorFonte[j]; //soma o valor de todas as fontes para usar na matriz
-                            }
-                        }
+                            Console.Write("\nA malha " + (i + 1) + " possui alguma fonte (s/n)? ");
+                            resp1 = Console.ReadLine().ToLower(); //lê a resposta do usuário, para saber se a malha possui alguma fonte ou não
 
-                        Console.Write("\nA malha " + (i + 1) + " possui algum resistor (s/n)? ");
-                        resp2 = Console.ReadLine().ToLower(); //To.Lower = pode ser usado letras maiúsculas e minúsculas
+                            if (resp1 == "s") //se a resposta for "s" (sim), o programa continua dentro do if. Caso contrário o programa passa para a próxima etapa
+                            {
+                                Console.Write("   Há quantas fontes nessa malha? ");
+                                int nFonte = int.Parse(Console.ReadLine());
+                                float[] valorFonte = new float[nFonte]; //vetor necessário para a soma das fontes pertencentes a matriz
+                                somaFonte[i] = 0;
+                                for (int j = 0; j < nFonte; j++) //percorre os valores das fontes
+                                {
+                                    Console.Write("      - Informe o valor da " + (j + 1) + "° fonte (v): ");
+                                    valorFonte[j] = float.Parse(Console.ReadLine());
+                                    Console.WriteLine("   Qual o sentido dessa fonte?");
+                                    Console.Write("      Se estiver no mesmo sentido da corrente (horário), digite 1, caso contrário (anti-horário) digite 2: ");
+                                    bool resp = true; //necessário para que o usuário informe a posição corretamente 
+                                    int posicao; //posição da fonte (importante no cáluclo)
+                                    do
+                                    {
+                                        resp = true;
+                                        posicao = int.Parse(Console.ReadLine());
+                                        if (posicao == 1)
+                                        {
+                                            valorFonte[j] = valorFonte[j];
+                                        }
+                                        else if (posicao == 2)
+                                        {
+                                            valorFonte[j] = (-valorFonte[j]); //muda o valor da fonte para negativo, caso essa esteja em sentido contrário à corrente
+                                        }
+                                        else
+                                        {
+                                            Console.Write(" Erro! Digite novamente: ");
+                                            resp = false;
+                                        }
+                                    } while (!resp);
+                                    somaFonte[i] += valorFonte[j]; //soma o valor de todas as fontes para usar na matriz
+                                }
+                            }
+                        } while (resp1 != "s" && resp1 != "n");
+
+
+                        //RESISTORES
                         somaResistor[i] = 0; somaResistorParticular[i] = 0; somaResistorCompartilhadoPro[i] = 0; somaResistorCompartilhadoAnt[i] = 0; //vetores com valor inicial 0, para poder efetuar a soma pedida
                         totalResistorMalha[i] = 0;
                         int nResistor, nResistorCompartilhadoF, nResistorCompartilhadoL, nResistorCompartilhadoM1, nResistorCompartilhadoM2;  //L=last; F=first; M1=mid1; M=mid2
-                        if (resp2 == "s")
+                        do
                         {
-                            Console.Write("   Há quantos resistores particulares nessa malha? ");
-                            nResistor = int.Parse(Console.ReadLine());
-                            totalResistorMalha[i] += nResistor;
-                            float[] valorResistorParticular = new float[nResistor]; //vetor necessário para a soma dos resistores pertencentes a matriz
-                            for (int k = 0; k < nResistor; k++)
+                            Console.Write("\nA malha " + (i + 1) + " possui algum resistor (s/n)? ");
+                            resp2 = Console.ReadLine().ToLower(); //To.Lower = pode ser usado letras maiúsculas e minúsculas
+                            if (resp2 == "s")
                             {
-                                Console.Write("      - Informe o valor do " + (k + 1) + "° resistor (Ohm) particular: ");
-
-                                valorResistorParticular[k] = float.Parse(Console.ReadLine());
-                                somaResistorParticular[i] += valorResistorParticular[k]; //armazena a soma dos valores de todos os resistores da matriz em questão
-                                                                                         //somaResistor[i] += somaResistorParticular[k];
-                            }
-                            if (i == 0) //primeira malha
-                            {
-                                Console.Write("   Há quantos resistores compartilhados com a malha " + (i + 2) + "? ");
-                                nResistorCompartilhadoF = int.Parse(Console.ReadLine());
-                                totalResistorMalha[i] += nResistorCompartilhadoF;
-                                float[] valorResistorCompartilhadoF = new float[nResistorCompartilhadoF];
-                                for (int l = 0; l < nResistorCompartilhadoF; l++)
+                                Console.Write("   Há quantos resistores particulares nessa malha? ");
+                                nResistor = int.Parse(Console.ReadLine());
+                                totalResistorMalha[i] += nResistor;
+                                float[] valorResistorParticular = new float[nResistor]; //vetor necessário para a soma dos resistores pertencentes a matriz
+                                for (int k = 0; k < nResistor; k++)
                                 {
-                                    Console.Write("      - Informe o valor do " + (l + 1) + "° resistor (Ohm) compartilhado com a malha " + (i + 2) + ": ");
+                                    Console.Write("      - Informe o valor do " + (k + 1) + "° resistor (Ohm) particular: ");
 
-                                    valorResistorCompartilhadoF[l] = float.Parse(Console.ReadLine());
-                                    somaResistorCompartilhadoPro[i] -= valorResistorCompartilhadoF[l]; //armazena a soma dos valores de todos os resistores compartilhados da matriz em questão com a matriz ao lado
-                                                                                                       //somaResistor[i] += somaResistorCompartilhadoPro[l];
+                                    valorResistorParticular[k] = float.Parse(Console.ReadLine());
+                                    somaResistorParticular[i] += valorResistorParticular[k]; //armazena a soma dos valores de todos os resistores da matriz em questão
+                                                                                             //somaResistor[i] += somaResistorParticular[k];
                                 }
-                            }
-                            else if (i == (nMalha - 1)) //última malha
-                            {
-                                Console.Write("   Há quantos resistores compartilhados com a malha " + (i) + "? ");
-                                nResistorCompartilhadoL = int.Parse(Console.ReadLine());
-                                totalResistorMalha[i] += nResistorCompartilhadoL;
-                                float[] valorResistorCompartilhadoL = new float[nResistorCompartilhadoL];
-                                for (int l = 0; l < nResistorCompartilhadoL; l++)
+                                if (i == 0) //primeira malha
                                 {
-                                    Console.Write("      - Informe o valor do " + (l + 1) + "° resistor (Ohm) compartilhado com a malha " + (i) + ": ");
+                                    Console.Write("   Há quantos resistores compartilhados com a malha " + (i + 2) + "? ");
+                                    nResistorCompartilhadoF = int.Parse(Console.ReadLine());
+                                    totalResistorMalha[i] += nResistorCompartilhadoF;
+                                    float[] valorResistorCompartilhadoF = new float[nResistorCompartilhadoF];
+                                    for (int l = 0; l < nResistorCompartilhadoF; l++)
+                                    {
+                                        Console.Write("      - Informe o valor do " + (l + 1) + "° resistor (Ohm) compartilhado com a malha " + (i + 2) + ": ");
 
-                                    valorResistorCompartilhadoL[l] = float.Parse(Console.ReadLine());
-                                    somaResistorCompartilhadoAnt[i] -= valorResistorCompartilhadoL[l];
-                                    //somaResistor[i] += somaResistorCompartilhadoAnt[l];
+                                        valorResistorCompartilhadoF[l] = float.Parse(Console.ReadLine());
+                                        somaResistorCompartilhadoPro[i] -= valorResistorCompartilhadoF[l]; //armazena a soma dos valores de todos os resistores compartilhados da matriz em questão com a matriz ao lado
+                                                                                                           //somaResistor[i] += somaResistorCompartilhadoPro[l];
+                                    }
                                 }
-                            }
-                            else //malhas quaisquer que não sejam nem a primeira e nem a última
-                            {
-                                Console.Write("   Há quantos resistores compartilhados com a malha " + (i + 2) + "? ");
-                                nResistorCompartilhadoM1 = int.Parse(Console.ReadLine());
-                                totalResistorMalha[i] += nResistorCompartilhadoM1;
-                                float[] valorResistorCompartilhadoM1 = new float[nResistorCompartilhadoM1];
-                                for (int l = 0; l < nResistorCompartilhadoM1; l++)
+                                else if (i == (nMalha - 1)) //última malha
                                 {
-                                    Console.Write("      - Informe o valor do " + (l + 1) + "° resistor (Ohm) compartilhado com a malha " + (i + 2) + ": ");
+                                    Console.Write("   Há quantos resistores compartilhados com a malha " + (i) + "? ");
+                                    nResistorCompartilhadoL = int.Parse(Console.ReadLine());
+                                    totalResistorMalha[i] += nResistorCompartilhadoL;
+                                    float[] valorResistorCompartilhadoL = new float[nResistorCompartilhadoL];
+                                    for (int l = 0; l < nResistorCompartilhadoL; l++)
+                                    {
+                                        Console.Write("      - Informe o valor do " + (l + 1) + "° resistor (Ohm) compartilhado com a malha " + (i) + ": ");
 
-                                    valorResistorCompartilhadoM1[l] = float.Parse(Console.ReadLine());
-                                    somaResistorCompartilhadoPro[i] -= valorResistorCompartilhadoM1[l];
-                                    //somaResistor[i] += somaResistorCompartilhadoPro[l];
+                                        valorResistorCompartilhadoL[l] = float.Parse(Console.ReadLine());
+                                        somaResistorCompartilhadoAnt[i] -= valorResistorCompartilhadoL[l];
+                                        //somaResistor[i] += somaResistorCompartilhadoAnt[l];
+                                    }
                                 }
-                                Console.Write("   Há quantos resistores compartilhados com a malha " + (i) + "? ");
-                                nResistorCompartilhadoM2 = int.Parse(Console.ReadLine());
-                                totalResistorMalha[i] += nResistorCompartilhadoM2;
-                                float[] valorResistorCompartilhadoM2 = new float[nResistorCompartilhadoM2];
-                                for (int l = 0; l < nResistorCompartilhadoM2; l++)
+                                else //malhas quaisquer que não sejam nem a primeira e nem a última
                                 {
-                                    Console.Write("      - Informe o valor do " + (l + 1) + "° resistor (Ohm) compartilhado com a malha " + (i) + ": ");
+                                    Console.Write("   Há quantos resistores compartilhados com a malha " + (i + 2) + "? ");
+                                    nResistorCompartilhadoM1 = int.Parse(Console.ReadLine());
+                                    totalResistorMalha[i] += nResistorCompartilhadoM1;
+                                    float[] valorResistorCompartilhadoM1 = new float[nResistorCompartilhadoM1];
+                                    for (int l = 0; l < nResistorCompartilhadoM1; l++)
+                                    {
+                                        Console.Write("      - Informe o valor do " + (l + 1) + "° resistor (Ohm) compartilhado com a malha " + (i + 2) + ": ");
 
-                                    valorResistorCompartilhadoM2[l] = float.Parse(Console.ReadLine());
-                                    somaResistorCompartilhadoAnt[i] -= valorResistorCompartilhadoM2[l];
-                                    //somaResistor[i] += somaResistorCompartilhadoAnt[l];
+                                        valorResistorCompartilhadoM1[l] = float.Parse(Console.ReadLine());
+                                        somaResistorCompartilhadoPro[i] -= valorResistorCompartilhadoM1[l];
+                                        //somaResistor[i] += somaResistorCompartilhadoPro[l];
+                                    }
+                                    Console.Write("   Há quantos resistores compartilhados com a malha " + (i) + "? ");
+                                    nResistorCompartilhadoM2 = int.Parse(Console.ReadLine());
+                                    totalResistorMalha[i] += nResistorCompartilhadoM2;
+                                    float[] valorResistorCompartilhadoM2 = new float[nResistorCompartilhadoM2];
+                                    for (int l = 0; l < nResistorCompartilhadoM2; l++)
+                                    {
+                                        Console.Write("      - Informe o valor do " + (l + 1) + "° resistor (Ohm) compartilhado com a malha " + (i) + ": ");
+
+                                        valorResistorCompartilhadoM2[l] = float.Parse(Console.ReadLine());
+                                        somaResistorCompartilhadoAnt[i] -= valorResistorCompartilhadoM2[l];
+                                        //somaResistor[i] += somaResistorCompartilhadoAnt[l];
+                                    }
                                 }
+                                somaResistor[i] += somaResistorParticular[i] - somaResistorCompartilhadoAnt[i] - somaResistorCompartilhadoPro[i];
                             }
-                            somaResistor[i] += somaResistorParticular[i] - somaResistorCompartilhadoAnt[i] - somaResistorCompartilhadoPro[i];
-                        }
+                        } while (resp2 != "s" && resp2 != "n");
 
 
+                        //PREENCHIMENTO DAS MATRIZES
                         int a = 0; //índice a precisa ser declarado fora do for, para não interferir dentro dele
                         for (int m = 0; m < nMalha; m++) //for para preencher a matrizConta
                         {
@@ -192,21 +210,22 @@ namespace AnaliseCircuito
 
                     }
 
-                    Console.WriteLine("---------------------------------------------------------------------------------------\n");
-                    Console.WriteLine("----------------------------------------INFORME----------------------------------------");
-                    Console.WriteLine("\n   Digite o número total de resistores compartilhados no circuito: ");
+                    //NÚMERO TOTAL DE RESISTORES NO CIRCUITO (vR)
+                    Console.WriteLine("----------------------------------------------------------------------------------------------------\n");
+                    Console.WriteLine("----------------------------------------------INFORME-----------------------------------------------");
+                    Console.Write("\n   Digite o número total de resistores compartilhados no circuito: ");
                     int rCompartilhado = int.Parse(Console.ReadLine());
 
                     for (int i = 0; i < nMalha; i++)
                     {
                         totalResistor += totalResistorMalha[i];
                     }
-                    totalResistor = totalResistor - rCompartilhado;
+                    totalResistor = totalResistor - rCompartilhado; //pega o número total de resistores e subtrai o número de resistores repetidos na conta (os compartilhados)
 
-                    int[] nCorrente = new int[(nMalha * 2) - 1];
 
-                    Console.WriteLine("\n---------------------------------------------------------------------------------------");
-                    Console.Write("\nMatriz conta: \n");
+                    //EXIBIÇÃO DA MATRIZ CONTA
+                    Console.WriteLine("\n");
+                    Console.WriteLine("\nMatriz conta: \n");
                     for (int m = 0; m < nMalha; m++)
                     {
                         for (int n = 0; n < nMalha; n++)
@@ -215,7 +234,7 @@ namespace AnaliseCircuito
                         }
                         Console.Write("\n");
                     }
-                    Console.WriteLine("\n----------------------------------------------------\n");
+                    Console.WriteLine("\n----------------------------------------------------------------------------------------------------\n");
 
                     // Coeficientes da matriz           
                     Matrix<double> coefficients = Matrix<double>.Build.Dense(nMalha, nMalha); //matriz preenchida à mão
@@ -242,10 +261,10 @@ namespace AnaliseCircuito
                     Console.WriteLine("   Valores das correntes (A): ");
                     for (int i = 0; i < nMalha; i++)
                     {
-                        Console.WriteLine($"I{i + 1}: {correntes[i].ToString("F2")}");
+                        Console.WriteLine($"      I{i + 1}: {correntes[i].ToString("F2")} A");
                     }
 
-                    double[] correntes2 = new double[(nMalha * 2 - 1) - nMalha];
+                    double[] correntes2 = new double[(nMalha * 2 - 1) - nMalha]; //cálculo do número de correntes que não particulares de uma malha (número total de correntes - número de correntes exclusivas das malhas)
                     int x = 0;
 
                     for (int i = 0; i < correntes2.Length; i++)
@@ -259,7 +278,7 @@ namespace AnaliseCircuito
                             correntes2[i] = correntes[x + 1] - correntes[x];
                         }
                         x++;
-                        Console.WriteLine("I" + (nMalha + 1 + i) + ": " + correntes2[i]);
+                        Console.WriteLine("      I" + (nMalha + 1 + i) + ": " + correntes2[i].ToString("F2") + " A");
                     }
 
                     float[] vR = new float[totalResistor];
@@ -267,6 +286,7 @@ namespace AnaliseCircuito
                     double[] totalvR = new double[totalResistor];
                     int corrente;
 
+                    //TENSÕES NAS RESISTÊNCIAS
                     Console.WriteLine("\n   Você também deseja descobrir as tensões nas resistências? ");
                     Console.Write("      Se sim, digite 1. Caso contrário, digite 2: ");
                     bool resp3 = true;
@@ -277,7 +297,7 @@ namespace AnaliseCircuito
                         {
                             for (int i = 0; i < vR.Length; i++)
                             {
-                                Console.Write("\n   Digite o valor do " + (i + 1) + "° resistor desejado: ");
+                                Console.Write("\n   Digite o valor do " + (i + 1) + "° resistor (Ohm) desejado: ");
                                 rDesejada[i] = float.Parse(Console.ReadLine());
                                 Console.Write("   Digite o número da corrente que passa por esse resistor: I");
                                 corrente = int.Parse(Console.ReadLine());
@@ -289,8 +309,8 @@ namespace AnaliseCircuito
                                 {
                                     totalvR[i] = (rDesejada[i] * correntes[corrente - 1]);
                                 }
-                                Console.WriteLine("   O valor da tensão (v) neste resistor é igual a: " + totalvR[i]);
-                                Console.WriteLine("---------------------------------------//---------------------------------------");
+                                Console.WriteLine("\n   - O valor da tensão (v) neste resistor é igual a: " + totalvR[i].ToString("F2") + " v");
+                                Console.WriteLine("-------------------------------------------------//-------------------------------------------------");
                             }
 
                             resp3 = false;
@@ -302,23 +322,36 @@ namespace AnaliseCircuito
                         }
                         else
                         {
-                            Console.WriteLine("   ERRO!!! Digite novamente: ");
+                            Console.Write("   ERRO!!! Digite novamente: ");
                             resp3 = true;
                         }
                     } while (resp3);
 
+                    bool resp5 = true;
                     Console.WriteLine("\n   Você deseja iniciar uma nova análise?");
                     Console.Write("      Se sim, digite 1. Caso contrário, digite 2: ");
-                    int resp4 = int.Parse(Console.ReadLine());
-                    if (resp4 == 1)
+                    do
                     {
-                        respPrincipal = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("   Obrigado! Volte sempre. ");
-                        respPrincipal = false;
-                    }
+                        int resp4 = int.Parse(Console.ReadLine());
+                        Console.Write("\n");
+                        if (resp4 == 1)
+                        {
+                            resp5 = true;
+                            respPrincipal = true;
+                        }
+                        else if (resp4 == 2)
+                        {
+                            Console.WriteLine("   Obrigado! Volte sempre. ");
+                            resp5 = true;
+                            respPrincipal = false;
+                        }
+                        else
+                        {
+                            Console.Write("   ERRO!!! Digite novamente: ");
+                            resp5 = false;
+                        }
+                    } while (!resp5);
+
                 } while (respPrincipal);
             }
             catch (Exception ex)
