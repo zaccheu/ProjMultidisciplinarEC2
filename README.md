@@ -1,3 +1,3 @@
 # ProjetoLeide
-Trabalho de física e elétrica
-A fazeres:
+Trabalho de lançamento balístico e de análise de circuitos.
+EC2
