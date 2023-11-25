@@ -6,3 +6,11 @@ C:\Users\Vitor\OneDrive - Fundação Salvador Arena\Circuito_Balística\AnaliseC
 C:\Users\Vitor\OneDrive - Fundação Salvador Arena\Circuito_Balística\AnaliseCircuito\obj\Debug\AnaliseCircuito.csproj.CoreCompileInputs.cache
 C:\Users\Vitor\OneDrive - Fundação Salvador Arena\Circuito_Balística\AnaliseCircuito\obj\Debug\AnaliseCircuito.exe
 C:\Users\Vitor\OneDrive - Fundação Salvador Arena\Circuito_Balística\AnaliseCircuito\obj\Debug\AnaliseCircuito.pdb
+C:\Users\Vitor\Git\Trabalho_Algoritmo\ProjetoLeide\AnaliseCircuito\bin\Debug\AnaliseCircuito.exe.config
+C:\Users\Vitor\Git\Trabalho_Algoritmo\ProjetoLeide\AnaliseCircuito\bin\Debug\AnaliseCircuito.exe
+C:\Users\Vitor\Git\Trabalho_Algoritmo\ProjetoLeide\AnaliseCircuito\bin\Debug\AnaliseCircuito.pdb
+C:\Users\Vitor\Git\Trabalho_Algoritmo\ProjetoLeide\AnaliseCircuito\obj\Debug\AnaliseCircuito.csproj.AssemblyReference.cache
+C:\Users\Vitor\Git\Trabalho_Algoritmo\ProjetoLeide\AnaliseCircuito\obj\Debug\AnaliseCircuito.csproj.SuggestedBindingRedirects.cache
+C:\Users\Vitor\Git\Trabalho_Algoritmo\ProjetoLeide\AnaliseCircuito\obj\Debug\AnaliseCircuito.csproj.CoreCompileInputs.cache
+C:\Users\Vitor\Git\Trabalho_Algoritmo\ProjetoLeide\AnaliseCircuito\obj\Debug\AnaliseCircuito.exe
+C:\Users\Vitor\Git\Trabalho_Algoritmo\ProjetoLeide\AnaliseCircuito\obj\Debug\AnaliseCircuito.pdb
