@@ -1,3 +1,2 @@
-# ProjetoLeide
-Trabalho de lançamento balístico e de análise de circuitos.
-EC2
+# ProjetoMultidisciplinar
+Trabalho de lançamento balístico e de análise de circuitos, realizado no segundo semestre da faculdade Engenheiro Salvador Arena.
